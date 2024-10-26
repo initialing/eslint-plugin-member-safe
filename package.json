@@ -1,12 +1,16 @@
 {
   "name": "eslint-plugin-member-safe",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Prevent the risk that the object is null or undefined when accessing object properties",
   "keywords": [
     "eslint",
     "eslintplugin",
     "eslint-plugin"
   ],
+  "repository": {
+    "url": "https://github.com/initialing/eslint-plugin-member-safe.git",
+    "type": "git"
+  },
   "author": "Scholes Zheng",
   "main": "./lib/index.js",
   "exports": "./lib/index.js",
