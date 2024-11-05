@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-member-safe",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Prevent the risk that the object is null or undefined when accessing object properties",
   "keywords": [
     "eslint",

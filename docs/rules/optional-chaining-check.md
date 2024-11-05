@@ -32,3 +32,7 @@ You can pass an `{ exceptFunction: true }` as an option to this rule to avoid ch
 ```js
 foo();
 ```
+
+### Cautions
+
+This rule conflicts with a eslint built-in rule([no-unsafe-optional-chaining](https://eslint.org/docs/latest/rules/no-unsafe-optional-chaining)). If you use this rule, you should turn off the built-in rule.

@@ -70,49 +70,60 @@ ruleTester.run("optional-chaining-check", rule, {
   invalid: [
     {
       code: "a.b;",
-      errors: [{ message: "Add optional chaining to this property reference"}],
+      errors: [{ message: "Add optional chaining to this property reference or function call"}],
       output: "a?.b;"
     },
     {
       code: "a['b'];",
-      errors: [{ message: "Add optional chaining to this property reference"}],
+      errors: [{ message: "Add optional chaining to this property reference or function call"}],
       output: "a?.['b'];"
     },
     {
       code: "a['b'] = c.d;",
-      errors: [{ message: "Add optional chaining to this property reference"}],
+      errors: [{ message: "Add optional chaining to this property reference or function call"}],
       output: "a['b'] = c?.d;"
     },
     {
       code: "a?.b();",
-      errors: [{ message: "Add optional chaining to this property reference"}],
+      errors: [{ message: "Add optional chaining to this property reference or function call"}],
       output: "a?.b?.();"
     },
     {
       code: "a?.b();",
-      errors: [{ message: "Add optional chaining to this property reference"}],
+      errors: [{ message: "Add optional chaining to this property reference or function call"}],
       options: [{exceptFunction: true}],
       output: "a?.b?.();"
     },
     {
       code: "a?.['b']();",
-      errors: [{ message: "Add optional chaining to this property reference"}],
+      errors: [{ message: "Add optional chaining to this property reference or function call"}],
       output: "a?.['b']?.();"
     },
     {
       code: "a.b?.();",
-      errors: [{ message: "Add optional chaining to this property reference"}],
+      errors: [{ message: "Add optional chaining to this property reference or function call"}],
       output: "a?.b?.();"
     },
     {
       code: "a?.b?.().c;",
-      errors: [{ message: "Add optional chaining to this property reference"}],
+      errors: [{ message: "Add optional chaining to this property reference or function call"}],
       output: "a?.b?.()?.c;"
     },
     {
       code: "a();",
-      errors: [{ message: "Add optional chaining to this property reference"}],
+      errors: [{ message: "Add optional chaining to this property reference or function call"}],
       output: "a?.();"
+    },
+    {
+      code: "rcvQtyMap[line.orderNumber] = (rcvQtyMap[line.orderNumber] + line.transactionQty).hlFixed()",
+      errors: [
+        { message: "Add optional chaining to this property reference or function call"},
+        { message: "Add optional chaining to this property reference or function call"},
+        { message: "Add optional chaining to this property reference or function call"},
+        { message: "Add optional chaining to this property reference or function call"},
+        { message: "Add optional chaining to this property reference or function call"}
+      ],
+      output: "rcvQtyMap[line.orderNumber] = (rcvQtyMap?.[line?.orderNumber] + line?.transactionQty)?.hlFixed?.()"
     },
     {
       code: `
@@ -121,8 +132,8 @@ ruleTester.run("optional-chaining-check", rule, {
         }
       `,
       errors: [
-        { message: "Add optional chaining to this property reference"}, 
-        { message: "Add optional chaining to this property reference"}
+        { message: "Add optional chaining to this property reference or function call"}, 
+        { message: "Add optional chaining to this property reference or function call"}
       ],
       output: `
         function parse(code, option) {
@@ -137,10 +148,10 @@ ruleTester.run("optional-chaining-check", rule, {
         }
       `,
       errors: [
-        { message: "Add optional chaining to this property reference"}, 
-        { message: "Add optional chaining to this property reference"},
-        { message: "Add optional chaining to this property reference"},
-        { message: "Add optional chaining to this property reference"} 
+        { message: "Add optional chaining to this property reference or function call"}, 
+        { message: "Add optional chaining to this property reference or function call"},
+        { message: "Add optional chaining to this property reference or function call"},
+        { message: "Add optional chaining to this property reference or function call"} 
       ],
       output: `
         if (a?.b) {
